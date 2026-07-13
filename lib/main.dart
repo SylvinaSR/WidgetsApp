@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_app/config/app_theme.dart';
+import 'package:widgets_app/presentation/screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,13 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppTheme(selectedColor: 5).getTheme(),
-      home: Scaffold(
-        body: Center(
-          child: FilledButton(onPressed: () {
-
-          }, child: Text('Hola')),
-        ),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
