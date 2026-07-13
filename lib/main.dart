@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_app/config/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(),
+      theme: AppTheme(selectedColor: 5).getTheme(),
       home: Scaffold(
         body: Center(
-          child: Text('WidgetApp'),
+          child: FilledButton(onPressed: () {
+
+          }, child: Text('Hola')),
         ),
       ),
     );
