@@ -4,8 +4,8 @@ import 'package:widgets_app/presentation/screens/screens.dart';
 final appRouter = GoRouter(
   initialLocation: '/',
   routes: [
-    GoRoute(path: '/', builder: (context, state) => HomeScreen(),),
-    GoRoute(path: '/buttons', builder: (context, state) => ButtonsScreen(),),
-    GoRoute(path: '/cards', builder: (context, state) => CardsScreen(),),
+    GoRoute(path: '/', builder: (context, state) => HomeScreen(), name: HomeScreen.name),
+    GoRoute(path: '/buttons', builder: (context, state) => ButtonsScreen(), name: ButtonsScreen.name),
+    GoRoute(path: '/cards', builder: (context, state) => CardsScreen(), name: CardsScreen.name),
   ]
 );
