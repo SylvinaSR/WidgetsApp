@@ -30,9 +30,19 @@ class _CardsView extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ...cards.map((card) => _CardTypeOne(elevation: card['elevation'], label: card['label'])),
-          ...cards.map((card) => _CardTypeOne(elevation: card['elevation'], label: card['label']))
-        ]
+          ...cards.map(
+            (card) => _CardTypeOne(
+              elevation: card['elevation'],
+              label: card['label'],
+            ),
+          ),
+          ...cards.map(
+            (card) => _CardTypeTwo(
+              elevation: card['elevation'],
+              label: card['label'],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -55,14 +65,48 @@ class _CardTypeOne extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
-                onPressed: (){}, 
-                icon: Icon(Icons.more_vert_outlined)
-              )
+                onPressed: () {},
+                icon: Icon(Icons.more_vert_outlined),
+              ),
             ),
+            Align(alignment: AlignmentGeometry.bottomLeft, child: Text(label)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CardTypeTwo extends StatelessWidget {
+  final String label;
+  final double elevation;
+
+  const _CardTypeTwo({required this.label, required this.elevation});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        side: BorderSide(
+          color: colors.outline
+        )
+      ),
+      elevation: elevation,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
+        child: Column(
+          children: [
             Align(
-              alignment: AlignmentGeometry.bottomLeft,
-              child: Text(label),
-            )
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.more_vert_outlined),
+              ),
+            ),
+            Align(alignment: AlignmentGeometry.bottomLeft, child: Text('$label - outline')),
           ],
         ),
       ),
