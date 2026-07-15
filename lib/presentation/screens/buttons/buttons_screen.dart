@@ -25,7 +25,6 @@ class _ButtonsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final colors = Theme.of(context).colorScheme;
 
     return SizedBox(
@@ -36,49 +35,74 @@ class _ButtonsView extends StatelessWidget {
           spacing: 10,
           alignment: WrapAlignment.center,
           children: [
-            ElevatedButton(onPressed: (){}, child: const Text('Elevated')),
-            ElevatedButton(onPressed: null, child: const Text('Elevated disabled')),
+            ElevatedButton(onPressed: () {}, child: const Text('Elevated')),
+            ElevatedButton(
+              onPressed: null,
+              child: const Text('Elevated disabled'),
+            ),
             ElevatedButton.icon(
-              onPressed: (){}, 
-              label: Text('Elevated Icon'), 
+              onPressed: () {},
+              label: Text('Elevated Icon'),
               icon: Icon(Icons.access_alarm_rounded),
             ),
-            FilledButton(
-              onPressed: (){}, 
-              child: Text('Filled')
-            ),
+            FilledButton(onPressed: () {}, child: Text('Filled')),
             FilledButton.icon(
-              onPressed: (){}, 
+              onPressed: () {},
               icon: Icon(Icons.accessibility_new),
               label: Text('Filled icon'),
             ),
-            OutlinedButton(onPressed: (){}, child: const Text('Outline')),
+            OutlinedButton(onPressed: () {}, child: const Text('Outline')),
             OutlinedButton.icon(
-              onPressed: (){}, 
+              onPressed: () {},
               icon: Icon(Icons.terminal),
               label: Text('Outlined icon'),
             ),
-            TextButton(onPressed: (){}, child: const Text('Text')),
+            TextButton(onPressed: () {}, child: const Text('Text')),
             TextButton.icon(
-              onPressed: (){}, 
+              onPressed: () {},
               label: Text('Text icon'),
               icon: Icon(Icons.account_box_outlined),
             ),
 
             //Custom buttons
-
+            CustomButton(),
 
             //
-            IconButton(onPressed: (){}, icon: Icon(Icons.app_registration)),
+            IconButton(onPressed: () {}, icon: Icon(Icons.app_registration)),
             IconButton(
-              onPressed: (){}, 
+              onPressed: () {},
               icon: Icon(Icons.app_registration_rounded),
               style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(colors.primary),
-                iconColor: WidgetStatePropertyAll(Colors.white)
+                iconColor: WidgetStatePropertyAll(Colors.white),
               ),
-            )
+            ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Material(
+        color: colors.primary,
+        child: InkWell(
+          onTap: () {
+            
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text('Hola mundo', style: TextStyle(color: Colors.white)),
+          ),
         ),
       ),
     );
