@@ -41,7 +41,7 @@ class _CustomListTile extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return ListTile(
-      leading: Icon(Icons.person_2_outlined, color: colors.inversePrimary),
+      leading: Icon(menuItem.icon, color: colors.inversePrimary),
       trailing: Icon(
         Icons.arrow_forward_ios_rounded,
         color: colors.inversePrimary,
