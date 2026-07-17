@@ -12,5 +12,6 @@ final appRouter = GoRouter(
     GoRoute(path: '/animated', builder: (context, state) => AnimatedScreen(), name: AnimatedScreen.name),
     GoRoute(path: '/ui-controls', builder: (context, state) => UiControlsScreen(), name: UiControlsScreen.name),
     GoRoute(path: '/tutorial', builder: (context, state) => AppTutorialScreen(), name: AppTutorialScreen.name),
+    GoRoute(path: '/infinite', builder: (context, state) => InfiniteScrollScreen(), name: InfiniteScrollScreen.name),
   ]
 );
