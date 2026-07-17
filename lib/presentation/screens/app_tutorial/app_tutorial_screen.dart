@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,10 +35,37 @@ final slides = <SlidesInfo>[
   ),
 ];
 
-class AppTutorialScreen extends StatelessWidget {
+class AppTutorialScreen extends StatefulWidget {
   static const String name = 'tutorial_screen';
 
   const AppTutorialScreen({super.key});
+
+  @override
+  State<AppTutorialScreen> createState() => _AppTutorialScreenState();
+}
+
+class _AppTutorialScreenState extends State<AppTutorialScreen> {
+  final PageController pageController = PageController();
+  bool endReached = false;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController.addListener(() {
+      final page = pageController.page ?? 0;
+      if (!endReached && page >= (slides.length - 1.5)) {
+        setState(() {
+          endReached = true;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +74,7 @@ class AppTutorialScreen extends StatelessWidget {
       body: Stack(
         children: [
           PageView(
+            controller: pageController,
             physics: const BouncingScrollPhysics(),
             children: slides
                 .map(
@@ -61,10 +90,24 @@ class AppTutorialScreen extends StatelessWidget {
             right: 20,
             top: 60,
             child: TextButton(
-              onPressed: () => context.pop(), 
-              child: Text('Salir')
+              onPressed: () => context.pop(),
+              child: Text('Salir'),
             ),
           ),
+          endReached
+              ? Positioned(
+                  bottom: 30,
+                  right: 30,
+                  child: FadeInRight(
+                    from: 15,
+                    delay: Duration(seconds: 1),
+                    child: FilledButton(
+                      onPressed: () => context.pop(),
+                      child: Text('Comenzar'),
+                    ),
+                  ),
+                )
+              : SizedBox(),
         ],
       ),
     );
