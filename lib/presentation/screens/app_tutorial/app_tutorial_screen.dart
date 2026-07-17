@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SlidesInfo {
   final String title;
@@ -41,17 +42,30 @@ class AppTutorialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        physics: const BouncingScrollPhysics(),
-        children: slides
-            .map(
-              (slideData) => _Slide(
-                title: slideData.title,
-                caption: slideData.caption,
-                imageUrl: slideData.imageURL,
-              ),
-            )
-            .toList(),
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          PageView(
+            physics: const BouncingScrollPhysics(),
+            children: slides
+                .map(
+                  (slideData) => _Slide(
+                    title: slideData.title,
+                    caption: slideData.caption,
+                    imageUrl: slideData.imageURL,
+                  ),
+                )
+                .toList(),
+          ),
+          Positioned(
+            right: 20,
+            top: 60,
+            child: TextButton(
+              onPressed: () => context.pop(), 
+              child: Text('Salir')
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -70,6 +84,22 @@ class _Slide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    final titleStyle = Theme.of(context).textTheme.titleLarge;
+    final captionStyle = Theme.of(context).textTheme.bodySmall;
+
+    return Padding(
+      padding: const EdgeInsetsGeometry.symmetric(horizontal: 30),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image(image: AssetImage(imageUrl)),
+          const SizedBox(height: 20),
+          Text(title, style: titleStyle),
+          SizedBox(height: 10),
+          Text(caption, style: captionStyle),
+        ],
+      ),
+    );
   }
 }
