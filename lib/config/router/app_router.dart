@@ -14,5 +14,6 @@ final appRouter = GoRouter(
     GoRoute(path: '/tutorial', builder: (context, state) => AppTutorialScreen(), name: AppTutorialScreen.name),
     GoRoute(path: '/infinite', builder: (context, state) => InfiniteScrollScreen(), name: InfiniteScrollScreen.name),
     GoRoute(path: '/riverpod', builder: (context, state) => CounterScreen(), name: CounterScreen.name),
+    GoRoute(path: '/theme-changer', builder: (context, state) => ThemeChangerScreen(), name: ThemeChangerScreen.name),
   ]
 );

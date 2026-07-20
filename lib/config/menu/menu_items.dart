@@ -24,5 +24,6 @@ const appMenuItems = <MenuItem> [
     MenuItem(title: 'UI controls', subTitle: 'Una serie de controles en Flutter', link: '/ui-controls', icon: Icons.switch_left_outlined),
     MenuItem(title: 'Tutorial', subTitle: 'Tutorial de la app', link: '/tutorial', icon: Icons.info_outline_rounded),
     MenuItem(title: 'Infinite', subTitle: 'Carrusel', link: '/infinite', icon: Icons.circle_outlined),
+    MenuItem(title: 'ThemeChanger', subTitle: 'Pantalla para cambiar theme', link: '/theme-changer', icon: Icons.color_lens),
 ];
 
