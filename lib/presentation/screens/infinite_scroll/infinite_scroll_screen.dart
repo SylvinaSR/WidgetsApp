@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,8 +18,6 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
 
   bool isLoading = false;
 
-  bool isMounted = true;
-
   @override
   void initState() {
     super.initState();
@@ -32,12 +31,16 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
 
   Future loadNextPage() async {
     if (isLoading) return;
+
     isLoading = true;
     setState(() {});
-    await Future.delayed(const Duration(seconds: 2));
+
+    await Future.delayed(const Duration(milliseconds: 500));
+
     addFiveImages();
     isLoading = false;
-    if (!isMounted) return;
+
+    if (!mounted) return;
     setState(() {});
   }
 
@@ -49,7 +52,6 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
 
   void addFiveImages() {
     final lastId = imagesId.last;
-    isMounted = false;
     imagesId.addAll([1, 2, 3, 4, 5].map((e) => lastId + e));
   }
 
@@ -79,7 +81,9 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pop(),
-        child: Icon(Icons.arrow_back_ios_new_outlined),
+        child: isLoading
+            ? SpinPerfect(infinite: true, child: Icon(Icons.refresh_rounded))
+            : FadeIn(child: Icon(Icons.arrow_back_ios_new_outlined)),
       ),
     );
   }
